@@ -6,6 +6,7 @@
     <title>Weather Dashboard</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -14,8 +15,13 @@
           <label for="InputCity">Search for City</label>
           <input type="city" class="form-control" id="inputCity" aria-describedby="city">
         </div>
-        <button type="search" class="btn btn-primary">Search</button>
+        <input type="submit" id="submit" class="btn btn-primary" value="search">
       </form>
+
+      <div class="city">
+
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
