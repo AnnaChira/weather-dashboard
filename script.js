@@ -2,7 +2,7 @@ $("#submit").on("click", function(event){
     event.preventDefault();
     var city = $("#inputCity").val();
     // console.log(city);
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+ "&appid=ffa2450d91a6f2a29c9510166ab57af7"
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=imperial"+ "&appid=ffa2450d91a6f2a29c9510166ab57af7"
     // console.log(queryURL)
 
 $.ajax({
@@ -35,8 +35,11 @@ $.ajax({
                 method: "GET"
             })
             .then(function(forecastresponse){
-                console.log(forecastresponse)
-            })
+                console.log(forecastresponse);
+                $("forecast").text(JSON.stringify(response));
+                var tBody = $("tbody");
+                var trow = $("<tr>"); 
+            });
         })
 
     
