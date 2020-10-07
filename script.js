@@ -14,12 +14,23 @@ $.ajax({
         // console.log(response);
         var tBody = $("<tbody>");
         var tRow = $("<tr>");
-        var tempTd = $("<td>").text(response.main.temp);
-        var humidityTd = $("<td>").text(response.main.humidity);
-        var windSpeedTd = $("<td>").text(response.wind.speed);
+        var tempTd = $("<td1>").text(response.main.temp);
+        var humidityTd = $("<td2>").text(response.main.humidity);
+        var windSpeedTd = $("<td3>").text(response.wind.speed);
         tRow.append(tempTd, humidityTd, windSpeedTd);
         tBody.append(tRow);
         $(".city").append(tBody);
+        localStorage.setItem(tempTd, humidityTd, windSpeedTd);
+
+        td1.textContent = "Tempature:";
+        td2.textContent = "Humidity";
+        td3.textContent = "Windspped";
+
+        td1.setAttribute("style", "margin:auto; width:50%; text-align:center;");
+        td2.setAttribute("style", "margin:auto; width:50%; text-align:center;");
+        td3.setAttribute("style", "margin:auto; width:50%; text-align:center;");
+
+
         
         var lat = response.coord.lat
         var lon = response.coord.lon
@@ -29,7 +40,7 @@ $.ajax({
             method: "GET"
         })
         .then(function(uvreponse){
-            //console.log(uvreponse)
+            console.log(uvreponse)
             var tBody = $("<tbody>");
             var tRow = $("<tr>");
             var valueTD = $("<td>").text(response.main.value);
@@ -42,7 +53,7 @@ $.ajax({
                 method: "GET"
             })
             .then(function(forecastresponse){
-                // console.log(forecastresponse);
+                console.log(forecastresponse);
                 var tBody = $("tbody");
                 var trow = $("<tr>");
                 var tempTd = $("<td>").text(response.main.temp);
@@ -52,9 +63,9 @@ $.ajax({
                 tbody.append(tRow);
                 $(".forecast").append(tbody);
             });
-        })
+        });
 
     
 
-    })
-})
+    });
+});
