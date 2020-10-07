@@ -11,14 +11,15 @@ $.ajax({
     })
     
     .then(function(response){
-        $("#city").text(JSON.stringify(response));
-        var tBody = $("tbody");
+        // console.log(response);
+        var tBody = $("<tbody>");
         var tRow = $("<tr>");
         var tempTd = $("<td>").text(response.main.temp);
-        var humidityTd = $("<td>").text(response.main.huidity);
+        var humidityTd = $("<td>").text(response.main.humidity);
         var windSpeedTd = $("<td>").text(response.wind.speed);
-        tRow.append(temp, humidity,speed);
+        tRow.append(tempTd, humidityTd, windSpeedTd);
         tBody.append(tRow);
+        $(".city").append(tBody);
         
         var lat = response.coord.lat
         var lon = response.coord.lon
@@ -29,16 +30,27 @@ $.ajax({
         })
         .then(function(uvreponse){
             //console.log(uvreponse)
+            var tBody = $("<tbody>");
+            var tRow = $("<tr>");
+            var valueTD = $("<td>").text(response.main.value);
+            tRow.append(valueTD);
+            tBody.append(tRow);
+            $(".uv").append(tbody);
             var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+ "&appid=ffa2450d91a6f2a29c9510166ab57af7"
             return $.ajax ({
                 url: forecastUrl,
                 method: "GET"
             })
             .then(function(forecastresponse){
-                console.log(forecastresponse);
-                $("forecast").text(JSON.stringify(response));
+                // console.log(forecastresponse);
                 var tBody = $("tbody");
-                var trow = $("<tr>"); 
+                var trow = $("<tr>");
+                var tempTd = $("<td>").text(response.main.temp);
+                var feelsTd = $("<td>").text(response.main.feels_like);
+                var humidityTd = $("<td>").text(response.main.humidity);
+                tRow.append(tempTd, feelsTd, humidityTd);
+                tbody.append(tRow);
+                $(".forecast").append(tbody);
             });
         })
 
