@@ -11,21 +11,21 @@ $.ajax({
     .then(function(response){
         var tBody = $("<tbody>");
         var tRow = $("<tr>");
-        var tempTd = $("<td1>").text(response.main.temp);
-        var humidityTd = $("<td2>").text(response.main.humidity);
-        var windSpeedTd = $("<td3>").text(response.wind.speed);
+        var tempTd = $("<td>");
+        var humidityTd = $("<td>");
+        var windSpeedTd = $("<td>");
         tRow.append(tempTd, humidityTd, windSpeedTd);
         tBody.append(tRow);
         $(".city").append(tBody);
         localStorage.setItem(tempTd, humidityTd, windSpeedTd);
 
-        td1.textContent = "Tempature:";
-        td2.textContent = "Humidity";
-        td3.textContent = "Windspeed";
+        tempTd.text("Tempature:" + response.main.temp);
+        humidityTd.text("Humidity" + response.main.humidity);
+        windSpeedTd.text("Windspeed" + response.wind.speed);
 
-        td1.setAttribute("style", "margin:auto; width:50%; text-align:letter;");
-        td2.setAttribute("style", "margin:auto; width:50%; text-align:letter;");
-        td3.setAttribute("style", "margin:auto; width:50%; text-align:letter;");
+        tempTd.attr("style", "margin:auto; width:50%; text-align:letter;");
+        humidityTd.attr("style", "margin:auto; width:50%; text-align:letter;");
+        windSpeedTd.attr("style", "margin:auto; width:50%; text-align:letter;");
 
 
         
@@ -39,12 +39,13 @@ $.ajax({
         .then(function(uvreponse){
             var tBody = $("<tbody>");
             var tRow = $("<tr>");
-            var valueTD = $("<td4>").text(response.main.value);
+            var valueTD = $("<td>");
             tRow.append(valueTD);
             tBody.append(tRow);
-            $(".uv").append(tbody);
-            td4.textContent = "UV";
-            td4.setAttribute("style","margin:auto; width:50%; text-align:letter;");
+            $(".uv").append(tBody);
+            console.log(uvreponse);
+            valueTD.text("UV" + uvreponse.value);
+            // valueTD.setAttribute("style","margin:auto; width:50%; text-align:letter;");
 
             var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+ "&units=imperial"+ "&appid=ffa2450d91a6f2a29c9510166ab57af7"
             return $.ajax ({
@@ -53,17 +54,25 @@ $.ajax({
             })
             .then(function(forecastresponse){
                 var tBody = $("tbody");
-                var trow = $("<tr>");
-                var tempTd = $("<td1>").text(list.main.temp);
-                var humidityTd = $("<td2>").text(list.main.humidity);
-                tRow.append(tempTd, humidityTd);
-                tbody.append(tRow);
-                $(".forecast").append(tbody);
+                var tRow = $("<tr>");
+               
+                
+                $(".forecast").append(tBody);
+                console.log(forecastresponse);
 
-                td1.textContent = "Temp";
-                td2.textContent = "Humidity";
-                td1.setAttribute("style", "margin:auto; width:50%; text-align:letter;");
-                td2.setAttribute("style", "margin:auto; width:50%; text-align:letter;");
+                var fiveday = forecastresponse.list
+                 for (var i = 0; i< fiveday.length; i++){
+                    var tempTd = $("<td>");
+                    var humidityTd = $("<td>");
+                    tempTd.text("Tempature" + fiveday[i].main.temp);
+                    humidityTd.text("Humidity" + fiveday[i].main.humidity);
+                    tRow.append(tempTd, humidityTd);
+                    tBody.append(tRow);
+                 }
+                // tempTd.textContent = "Temp" + forecastresponse.list.main.temp;
+                // humidityTd.textContent = "Humidity" + forecastresponse.list.main.humidity;
+                // tempTd.setAttribute("style", "margin:auto; width:50%; text-align:letter;");
+                // humidityTd.setAttribute("style", "margin:auto; width:50%; text-align:letter;");
             });
         });
 
