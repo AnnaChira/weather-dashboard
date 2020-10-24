@@ -9,34 +9,14 @@ $.ajax({
     })
     
     .then(function(response){
-        // var tBody = $("<tbody>");
-        // var tRow = $("<tr>");
         $(".city").text(response.name);
-        var tempTd = $("<p>").text("Tempature:" + response.main.temp);
-        var humidityTd = $("<p>").text("Humidity" + response.main.humidity);
-        var windSpeedTd = $("<p>").text("Windspeed" + response.wind.speed);
-        $("#temp").append(tempTd);
+        var tempTd = $("<p>").text("Tempature:" + "" + response.main.temp);
+        var humidityTd = $("<p>").text("Humidity" + "" + response.main.humidity);
+        var windSpeedTd = $("<p>").text("Windspeed" + "" + response.wind.speed);
+        $("#temp).append(tempTd);
         $("#humidity").append(humidityTd);
         $("#windspeed").append(windSpeedTd);
-        // $(".city").append(tBody);
-        // var tempTd = $("<td>");
-        // var humidityTd = $("<td>");
-        // var windSpeedTd = $("<td>");
-        // tRow.append(tempTd, humidityTd, windSpeedTd);
-        // tBody.append(tRow);
-        // $(".city").append(tBody);
-        // localStorage.setItem(tempTd, humidityTd, windSpeedTd);
 
-        // tempTd.text("Tempature:" + response.main.temp);
-        // humidityTd.text("Humidity" + response.main.humidity);
-        // windSpeedTd.text("Windspeed" + response.wind.speed);
-
-        // tempTd.attr("style", "margin:auto; width:50%; text-align:letter;");
-        // humidityTd.attr("style", "margin:auto; width:50%; text-align:letter;");
-        // windSpeedTd.attr("style", "margin:auto; width:50%; text-align:letter;");
-
-
-        
         var lat = response.coord.lat
         var lon = response.coord.lon
         var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+ "&appid=ffa2450d91a6f2a29c9510166ab57af7"
@@ -45,15 +25,9 @@ $.ajax({
             method: "GET"
         })
         .then(function(uvreponse){
-            var tBody = $("<tbody>");
-            var tRow = $("<tr>");
-            var valueTD = $("<td>");
-            tRow.append(valueTD);
-            tBody.append(tRow);
-            $(".uv").append(tBody);
+            var uvTd = $("<p>").text("UV" + uvreponse.value);
+            $("uvmain").append(uvTd);
             console.log(uvreponse);
-            valueTD.text("UV" + uvreponse.value);
-            // valueTD.setAttribute("style","margin:auto; width:50%; text-align:letter;");
 
             var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+ "&units=imperial"+ "&appid=ffa2450d91a6f2a29c9510166ab57af7"
             return $.ajax ({
