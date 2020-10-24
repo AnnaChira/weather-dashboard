@@ -9,23 +9,31 @@ $.ajax({
     })
     
     .then(function(response){
-        var tBody = $("<tbody>");
-        var tRow = $("<tr>");
-        var tempTd = $("<td>");
-        var humidityTd = $("<td>");
-        var windSpeedTd = $("<td>");
-        tRow.append(tempTd, humidityTd, windSpeedTd);
-        tBody.append(tRow);
-        $(".city").append(tBody);
-        localStorage.setItem(tempTd, humidityTd, windSpeedTd);
+        // var tBody = $("<tbody>");
+        // var tRow = $("<tr>");
+        $(".city").text(response.name);
+        var tempTd = $("<p>").text("Tempature:" + response.main.temp);
+        var humidityTd = $("<p>").text("Humidity" + response.main.humidity);
+        var windSpeedTd = $("<p>").text("Windspeed" + response.wind.speed);
+        $("#temp").append(tempTd);
+        $("#humidity").append(humidityTd);
+        $("#windspeed").append(windSpeedTd);
+        // $(".city").append(tBody);
+        // var tempTd = $("<td>");
+        // var humidityTd = $("<td>");
+        // var windSpeedTd = $("<td>");
+        // tRow.append(tempTd, humidityTd, windSpeedTd);
+        // tBody.append(tRow);
+        // $(".city").append(tBody);
+        // localStorage.setItem(tempTd, humidityTd, windSpeedTd);
 
-        tempTd.text("Tempature:" + response.main.temp);
-        humidityTd.text("Humidity" + response.main.humidity);
-        windSpeedTd.text("Windspeed" + response.wind.speed);
+        // tempTd.text("Tempature:" + response.main.temp);
+        // humidityTd.text("Humidity" + response.main.humidity);
+        // windSpeedTd.text("Windspeed" + response.wind.speed);
 
-        tempTd.attr("style", "margin:auto; width:50%; text-align:letter;");
-        humidityTd.attr("style", "margin:auto; width:50%; text-align:letter;");
-        windSpeedTd.attr("style", "margin:auto; width:50%; text-align:letter;");
+        // tempTd.attr("style", "margin:auto; width:50%; text-align:letter;");
+        // humidityTd.attr("style", "margin:auto; width:50%; text-align:letter;");
+        // windSpeedTd.attr("style", "margin:auto; width:50%; text-align:letter;");
 
 
         
