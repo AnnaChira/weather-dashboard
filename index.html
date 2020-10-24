@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
 
-<nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
-</nav>
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
+  </nav>
 
   <div class="history">
 
@@ -31,22 +33,55 @@
     </div>
   </div>
 
-     
-      <div class="city">
-  
-
-      </div>
-
+  <div class="city">
+    <div class="card-body">
       <div class="uv">
-        
       </div>
+    </div>
+  </div>
 
-      <div class="forecast">
-        <h2>Five Day Forecast</h2>
 
+  <h2>Five Day Forecast</h2>
+  <div id="forecast" class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <h5 id="date" class="card-title"></h5>
+        <p id="temp" class="card-text"></p>
+        <p id="humidity" class="card-text"></p>
       </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 id="date" class="card-title"></h5>
+        <p id="temp" class="card-text"></p>
+        <p id="humidity" class="card-text"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 id="date" class="card-title"></h5>
+        <p id="temp" class="card-text"></p>
+        <p id="humidity" class="card-text"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 id="date" class="card-title"></h5>
+        <p id="temp" class="card-text"></p>
+        <p id="humidity" class="card-text"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 id="date" class="card-title"></h5>
+        <p id="temp" class="card-text"></p>
+        <p id="humidity" class="card-text"></p>
+      </div>
+    </div>
+  </div>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="./script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="./script.js"></script>
 </body>
+
 </html>
