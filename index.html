@@ -17,42 +17,52 @@
     <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
   </nav>
 
-  <div class="history">
-
-  </div>
-
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <form>
-        <div class="search-city">
-          <label for="InputCity">Search for City</label>
-          <input type="city" class="form-control" id="inputCity" aria-describedby="city">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <form>
+              <div class="search-city">
+                <label for="InputCity">Search for City</label>
+                <input type="city" class="form-control" id="inputCity" aria-describedby="city">
+              </div>
+              <input type="submit" id="submit" class="btn btn-primary" value="search">
+            </form>
+          </div>
         </div>
-        <input type="submit" id="submit" class="btn btn-primary" value="search">
-      </form>
+      </div>
+      <div class="col-sm">
+        <div class="card" style="border-color: black; width: auto;">
+          <div class="card-body">
+            <p id="city" class="card-text"></p>
+            <p id="temp" class="card-text"></p>
+            <p id="humidity" class="card-text"></p>
+            <p id="windspeed" class="card-text"></p>
+            <p id="uvmain" class="card-text"></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div id="pastcity" class="card" style="width: 18rem;">
-    <div class="card-header">
-     Past City
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div id="pastcity" class="card" style="width: 18rem;">
+          <div class="card-header">
+            Past City
+          </div>
+          <ul class="list-group list-group-flush">
+            <li id="city1" class="list-group-item"></li>
+            <li id="city2" class="list-group-item"></li>
+            <li id="city3" class="list-group-item"></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <ul class="list-group list-group-flush">
-      <li id="city1" class="list-group-item"></li>
-      <li id="city2" class="list-group-item"></li>
-      <li id="city3" class="list-group-item"></li>
-    </ul>
   </div>
 
-<div class="card">  
-  <div class="card-body">
-    <p id="city" class="card-text"></p>
-    <p id ="temp" class="card-text"></p>
-    <p id="humidity" class="card-text"></p>
-    <p id="windspeed" class="card-text"></p>
-    <p id="uvmain" class="card-text"></p>
-  </div>
-</div>
 
 
   <h2>Five Day Forecast</h2>
