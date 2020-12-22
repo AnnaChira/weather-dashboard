@@ -2,10 +2,7 @@ $("#submit").on("click", function (event) {
     event.preventDefault();
     var city = $("#inputCity").val();
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=ffa2450d91a6f2a29c9510166ab57af7"
-
-    // city.replace(/ /g, "_");
-    // localStorage.setItem('city', city);
-    // $("city1").append(city)
+   
 
     $.ajax({
         url: queryURL,
@@ -18,11 +15,11 @@ $("#submit").on("click", function (event) {
             var tempTd = $("<p>").text("Tempature:" + " " + response.main.temp + "F");
             var humidityTd = $("<p>").text("Humidity:" + " " + response.main.humidity + "%");
             var windSpeedTd = $("<p>").text("Windspeed:" + " " + response.wind.speed + " " + "MPH");
-            $("#currentdate").append(dateTd);
-            $("#city").append(cityTd);
-            $("#temp").append(tempTd);
-            $("#humidity").append(humidityTd);
-            $("#windspeed").append(windSpeedTd);
+            $("#currentdate").html(dateTd);
+            $("#city").html(cityTd);
+            $("#temp").html(tempTd);
+            $("#humidity").html(humidityTd);
+            $("#windspeed").html(windSpeedTd);
 
             var lat = response.coord.lat
             var lon = response.coord.lon
@@ -33,7 +30,7 @@ $("#submit").on("click", function (event) {
             })
                 .then(function (uvreponse) {
                     var uvTd = $("<p>").text("UV:" + " " + uvreponse.value);
-                    $("#uvmain").append(uvTd);
+                    $("#uvmain").html(uvTd);
                     console.log(uvreponse);
 
                     var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=e4b35fb35e37e6a34cdbfa70d99d5921"
@@ -50,12 +47,13 @@ $("#submit").on("click", function (event) {
                             console.log(forecastresponse);
 
                             var fiveday = forecastresponse.list
+                            var j = 0
                             for (var i = 0; i < fiveday.length; i = i + 8) {
-                                var fivetempTd = $("<p>").text("Tempature:" + " " + fiveday[i].main.temp + "F");
-                                var fivehumidityTd = $("<p>").text("Humidity:" + " " + fiveday[i].main.humidity + "%");
-                                $("#temp1").append(fivetempTd);
-                                $("#humidity1").append(fivehumidityTd);
-                                console.log(fiveday[i].main.temp);
+                                var card = $($("#forecast").children()[j]);
+                                card.find(".card-date").text(fiveday[i].dt_txt);
+                                card.find(".card-temp").text("Tempature:" + " " + fiveday[i].main.temp + "F");
+                                card.find(".card-humidity").text("Humidity:" + " " + fiveday[i].main.humidity + "%");
+                                j++;
                             }
                         });
                 });
@@ -64,3 +62,20 @@ $("#submit").on("click", function (event) {
 
         });
 });
+localStorage.setItem('city', city);
+function getFromStorage(){
+    var list = window.localStorage.getItem("cityList")
+    if (!list){
+        list = []
+    } else {
+        list = JSON.parse(list)
+    }
+    return list
+}
+function displayCitylist(){
+    var list = getFromStorage();
+    for (var i = 0; i < list.length; i++){
+        $("#citylist").append('<li class="list-group-item">' + list[i] + '</li>');
+    }
+}
+displayCitylist()
